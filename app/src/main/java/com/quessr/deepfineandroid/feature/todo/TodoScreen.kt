@@ -188,12 +188,18 @@ private fun TodoRow(
                     }
                 }, modifier = Modifier
                     .width(actionWidth)
-                    .fillMaxHeight()
+                    .fillMaxHeight(),
+                contentPadding = PaddingValues(0.dp)
             ) {
-                Text(
-                    text = "삭제",
-                    color = Color.White
-                )
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "삭제",
+                        color = Color.White
+                    )
+                }
             }
         }
 

@@ -22,6 +22,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -30,9 +31,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.wear.compose.material.ExperimentalWearMaterialApi
-import androidx.wear.compose.material.Text
 import com.quessr.deepfineandroid.core.ui.theme.bgGrey
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -51,7 +52,7 @@ fun HistoryScreen(vm: HistoryViewModel = hiltViewModel(), onGoTodo: () -> Unit) 
                         )
                     }
                 },
-                title = { Text("History", color = MaterialTheme.colorScheme.onSurface) },
+                title = { Text("History") },
             )
         }
     ) { innerPadding ->
@@ -66,8 +67,8 @@ fun HistoryScreen(vm: HistoryViewModel = hiltViewModel(), onGoTodo: () -> Unit) 
                 key = { it.id }) { history ->
                 HistoryRow(
                     content = history.content,
-                    createdAt = history.createdAt.toString(),
-                    completedAt = history.completedAt.toString()
+                    createdAt = history.createdAtFormatted,
+                    completedAt = history.completedAtFormatted
                 )
             }
         }
@@ -88,7 +89,7 @@ private fun HistoryRow(
             .background(Color.White)
             .padding(horizontal = 16.dp, vertical = 12.dp)
     ) {
-        Text(text = content, color = MaterialTheme.colorScheme.onSurface)
+        Text(text = content, fontSize = 14.sp)
 
         Spacer(Modifier.height(4.dp))
 
@@ -97,8 +98,8 @@ private fun HistoryRow(
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = "등록일: $createdAt", color = MaterialTheme.colorScheme.onSurface)
-            Text(text = "완료일: $completedAt", color = MaterialTheme.colorScheme.onSurface)
+            Text(text = "등록일: $createdAt", fontSize = 10.sp)
+            Text(text = "완료일: $completedAt", fontSize = 10.sp)
         }
     }
 }
