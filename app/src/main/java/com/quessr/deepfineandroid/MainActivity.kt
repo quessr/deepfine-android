@@ -15,6 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.quessr.deepfineandroid.core.ui.theme.DeepfineAndroidTheme
+import com.quessr.deepfineandroid.feature.history.HistoryScreen
 import com.quessr.deepfineandroid.feature.todo.TodoScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,8 +34,11 @@ class MainActivity : ComponentActivity() {
                 ) {
                     composable("todo") {
                         TodoScreen(
-                            onGoHistory = {navController.navigate("history")}
+                            onGoHistory = { navController.navigate("history") }
                         )
+                    }
+                    composable("history") {
+                        HistoryScreen(onGoTodo = { navController.navigate("todo") })
                     }
                 }
             }
